@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>筋トレ管理</title>
+    <title>ポラム勤務報告</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
@@ -11,34 +11,29 @@
 <body>
 
     <form class="w-75 mx-auto">
-        <p class="mt-3">名前</p>
+        <p class="mt-3">開始時間</p>
         <div>
-            <input type="time" class="form-control w-100 mt-1" name="name" placeholder="" required>
-<!--             <input class="form-control w-100 mt-1" name="name" placeholder="" required> -->
+            <input type="time" class="form-control w-100 mt-1" name="start_time" step=900 required>
         </div>
-        <p class="mt-3">腕立て2</p>
+        
+        <p class="mt-3">終了時間</p>
         <div>
-            <select class="form-control w-100 mt-1" name="udetate" required>
-                <option value="選択肢1">選択肢1</option>
-                <option value="選択肢2">選択肢2</option>
-                <option value="選択肢3">選択肢3</option>
-                <option value="選択肢4">選択肢4</option>
-                <option value="選択肢5">選択肢5</option>
+            <input type="time" class="form-control w-100 mt-1" name="end_time" placeholder="" required>
+        </div>
+        
+        <p class="mt-3">場所</p>
+        <div>
+            <select class="form-control w-100 mt-1" name="place" required>
+                <option value="熊木式典">熊木式典</option>
+                <option value="典礼ホール">典礼ホール</option>
+                <option value="正直屋">正直屋</option>
             </select>
-<!--             <input class="form-control w-100 mt-1" name="udetate" required> -->
         </div>
-        <p class="mt-3">腹筋</p>
+        <p class="mt-3">メモ</p>
         <div>
-            <input class="form-control w-100 mt-1" name="fukkin" required>
+            <input class="form-control w-100 mt-1" name="memo">
         </div>
-        <p class="mt-3">背筋</p>
-        <div>
-            <input class="form-control w-100 mt-1" name="haikin" required>
-        </div>
-        <p class="mt-3">スクワット</p>
-        <div>
-            <input class="form-control w-100 mt-1" name="sukuwat" required>
-        </div>
+        
         <input type="submit" class="mt-4 btn btn-primary" value="送信">
     </form>
 
@@ -80,12 +75,11 @@
 
         $(function () {
             $('form').submit(function () {
-                const name    = $('input[name="name"]').val();
-                const udetate = $('select[name="udetate"]').val();
-                const fukkin  = $('input[name="fukkin"]').val();
-                const haikin  = $('input[name="haikin"]').val();
-                const sukuwat = $('input[name="sukuwat"]').val();
-                const msg = `${name}\n${udetate}\n${fukkin}\n${haikin}\n${sukuwat}`;
+                const start_time    = $('input[name="start_time"]').val();
+                const end_time = $('input[name="end_time"]').val();
+                const place  = $('select[name="place"]').val();
+                const memo  = $('input[name="memo"]').val();
+                const msg = `${start_time}\n${end_time}\n${place}\n${memo}`;
                 sendText(msg);
                 return false;
             });
