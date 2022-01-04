@@ -88,7 +88,7 @@
         $(function () {
             $('form').submit(function () {
                 const start_time    = $('input[name="start_time"]').val();
-                const end_time = $('input[name="end_time"]').val();
+                const end_time = $('select[name="end_time"]').val();
                 const place  = $('select[name="place"]').val();
                 const memo  = $('input[name="memo"]').val();
                 const msg = `${start_time}\n${end_time}\n${place}\n${memo}`;
