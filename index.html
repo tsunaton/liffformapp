@@ -11,6 +11,11 @@
 <body>
 
     <form class="w-75 mx-auto">
+        <p class="mt-3">家</p>
+        <div>
+            <input class="form-control w-100 mt-1" name="ie">"家"
+        </div>
+        
         <p class="mt-3">開始時間</p>
         <div>
             <select class="form-control w-100 mt-1" name="start_time" required>
@@ -191,11 +196,12 @@
 
         $(function () {
             $('form').submit(function () {
+                const ie = $('input[name="ie"]').val();
                 const start_time    = $('select[name="start_time"]').val();
                 const end_time = $('select[name="end_time"]').val();
                 const place  = $('select[name="place"]').val();
                 const memo  = $('input[name="memo"]').val();
-                const msg = `${start_time}\n${end_time}\n${place}\n${memo}`;
+                const msg = `${ie}\n${start_time}\n${end_time}\n${place}\n${memo}`;
                 sendText(msg);
                 return false;
             });
