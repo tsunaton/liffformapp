@@ -160,7 +160,7 @@
         
         <p class="mt-3">クライアント</p>
         <div>
-            <select class="form-control w-100 mt-1" name="place" required>
+            <select class="form-control w-100 mt-1" name="client" required>
                 <option value="至誠会館">至誠会館</option>
                 <option value="至宝">至宝</option>
                 <option value="北戸田">北戸田</option>
@@ -176,7 +176,7 @@
         
         <p class="mt-3">交通費</p>
         <div>
-            <input type="number" class="form-control w-100 mt-1" name="memo">
+            <input type="number" class="form-control w-100 mt-1" name="transportation_fee">
         </div>
         
         <p class="mt-3">メモ</p>
@@ -229,6 +229,8 @@
                 const start_time    = $('select[name="start_time"]').val();
                 const end_time = $('select[name="end_time"]').val();
                 const place  = $('select[name="place"]').val();
+                const client  = $('select[name="client"]').val();
+                const transportation_fee = $('input[name="transportation_fee"]').val();
                 const memo  = $('input[name="memo"]').val();
                 const msg = `${ie}\n${start_time}\n${end_time}\n${place}\n${memo}`;
                 sendText(msg);
