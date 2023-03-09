@@ -11,7 +11,7 @@
 <body>
 
     <form class="w-75 mx-auto">
-        <p class="mt-3">a家</p>
+        <p class="mt-3">家</p>
         <div>
             <input class="form-control w-100 mt-1" name="ie">
         </div>
@@ -232,7 +232,7 @@
                 const client  = $('select[name="client"]').val();
                 const transportation_fee = $('input[name="transportation_fee"]').val();
                 const memo  = $('input[name="memo"]').val();
-                const msg = `${ie}\n${start_time}\n${end_time}\n${place}\n${memo}`;
+                const msg = `${ie}\n${start_time}\n${end_time}\n${place}\n${client}\n${transportation_fee}\n${memo}`;
                 sendText(msg);
                 return false;
             });
