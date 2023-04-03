@@ -228,8 +228,8 @@
 
         $(function () {
             $('form').submit(function () {
-                const ie = $('input[name="ie"]').val();
                 const date = $('input[name="date"]').val();
+                const ie = $('input[name="ie"]').val();
                 const start_time = $('select[name="start_time"]').val();
                 const end_time = $('select[name="end_time"]').val();
                 const place  = $('select[name="place"]').val();
@@ -237,7 +237,7 @@
                 const transportation_fee = $('input[name="transportation_fee"]').val();
                 const parking_fee = $('input[name="parking_fee"]').val();
                 const memo  = $('input[name="memo"]').val();
-                const msg = `${ie}\n${date}\n${start_time}\n${end_time}\n${place}\n${client}\n${transportation_fee}\n${parking_fee}\n${memo}`;
+                const msg = `${date}\n${ie}\n${start_time}\n${end_time}\n${place}\n${client}\n${transportation_fee}\n${parking_fee}\n${memo}`;
                 sendText(msg);
                 return false;
             });
