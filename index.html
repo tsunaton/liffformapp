@@ -11,9 +11,14 @@
 <body>
 
     <form class="w-75 mx-auto">
+        <p class="mt-3">日時</p>
+        <div>
+            <input type="date" lass="form-control w-100 mt-1" name="ie">
+        </div>
+        
         <p class="mt-3">家</p>
         <div>
-            <input class="form-control w-100 mt-1" name="ie">
+            <input class="form-control w-100 mt-1" name="date">
         </div>
         
         <p class="mt-3">開始時間</p>
@@ -161,9 +166,9 @@
         <p class="mt-3">クライアント</p>
         <div>
             <select class="form-control w-100 mt-1" name="client" required>
-               <option value="塚越">塚越</option>
-               <option value="華鳳">華鳳</option>
-               <option value="フレーバー">フレーバー</option>
+                <option value="フレーバー">フレーバー</option>
+                <option value="華鳳">正直屋</option>              
+                <option value="塚越">塚越</option>
             </select>
         </div>
         
@@ -224,14 +229,15 @@
         $(function () {
             $('form').submit(function () {
                 const ie = $('input[name="ie"]').val();
-                const start_time    = $('select[name="start_time"]').val();
+                const date = $('input[name="date"]').val();
+                const start_time = $('select[name="start_time"]').val();
                 const end_time = $('select[name="end_time"]').val();
                 const place  = $('select[name="place"]').val();
                 const client  = $('select[name="client"]').val();
                 const transportation_fee = $('input[name="transportation_fee"]').val();
                 const parking_fee = $('input[name="parking_fee"]').val();
                 const memo  = $('input[name="memo"]').val();
-                const msg = `${ie}\n${start_time}\n${end_time}\n${place}\n${client}\n${transportation_fee}\n${parking_fee}\n${memo}`;
+                const msg = `${ie}\n${date}\n${start_time}\n${end_time}\n${place}\n${client}\n${transportation_fee}\n${parking_fee}\n${memo}`;
                 sendText(msg);
                 return false;
             });
