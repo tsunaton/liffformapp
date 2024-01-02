@@ -165,7 +165,8 @@
         
         <p class="mt-3">場所</p>
         <div>
-            <select class="form-control w-100 mt-1" name="place" required>
+            <input class="form-control w-100 mt-1" type="text" name="place" list="places" placeholder="テキスト入力または選択" autocomplete="off" required>
+            <datalist id="places">
                 <option value="戸田公園ホール">戸田公園ホール</option>
                 <option value="北戸田ホール">北戸田ホール</option>
                 <option value="新埼玉霊園">新埼玉霊園</option>
@@ -176,8 +177,9 @@
                 <option value="大宮聖苑">大宮聖苑</option>                
                 <option value="三仏寺">三仏寺</option>
                 <option value="その他">その他</option>
-            </select>
+            </datalist>
         </div>
+
         
         <p class="mt-3">クライアント</p>
         <div>
