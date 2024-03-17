@@ -13,20 +13,20 @@
             border-radius: 1rem;
             background-color: aliceblue;
         }
-        .background {
+        .background-container {
             position: relative;
             width: 100%;
             height: 100%;
             overflow: hidden;
         }
-        .background:before {
+        .background-container:before {
               content: "";
               position: absolute;
               top: 0;
               left: 0;
               width: 100%;
               height: 100%;
-              background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%), url('pink_and_yellow_flowers.jpeg');
+              background: linear-gradient(to bottom, rgba(255,255,255,0) 50%, rgba(255,255,255,1) 100%), url('pink_and_yellow_flowers.jpeg');
               background-size: cover;
               z-index: -1;
         }
@@ -35,204 +35,204 @@
 
 </head>
 <body>
-    <img src="pink_and_yellow_flowers.jpeg" class="background" width="100%" height="">
-    <form class="w-75 mx-auto">
-        <p class="mt-3">日時</p>
-        <div>
-            <input type="date" lass="form-control w-100 mt-1" name="date" required>
-        </div>
-        
-        <p class="mt-3">家</p>
-        <div>
-            <input class="form-control w-100 mt-1" name="ie" required>
-        </div>
-        
-        <p class="mt-3">開始時間</p>
-        <div>
-            <select class="form-control w-100 mt-1" name="start_time" required>
-                <option value="7:00">7:00</option>
-                <option value="7:15">7:15</option>
-                <option value="7:30">7:30</option>
-                <option value="7:45">7:45</option>
-                <option value="8:00">8:00</option>
-                <option value="8:15">8:15</option>
-                <option value="8:30">8:30</option>
-                <option value="8:45">8:45</option>
-                <option value="9:00">9:00</option>
-                <option value="9:15">9:15</option>
-                <option value="9:30">9:30</option>
-                <option value="9:45">9:45</option>
-                <option value="10:00">10:00</option>
-                <option value="10:15">10:15</option>
-                <option value="10:30">10:30</option>
-                <option value="10:45">10:45</option>
-                <option value="11:00" selected>11:00</option>
-                <option value="11:15">11:15</option>
-                <option value="11:30">11:30</option>
-                <option value="11:45">11:45</option>
-                <option value="12:00">12:00</option>
-                <option value="12:15">12:15</option>
-                <option value="12:30">12:30</option>
-                <option value="12:45">12:45</option>
-                <option value="13:00">13:00</option>
-                <option value="13:15">13:15</option>
-                <option value="13:30">13:30</option>
-                <option value="13:45">13:45</option>
-                <option value="14:00">14:00</option>
-                <option value="14:15">14:15</option>
-                <option value="14:30">14:30</option>
-                <option value="14:45">14:45</option>
-                <option value="15:00">15:00</option>
-                <option value="15:15">15:15</option>
-                <option value="15:30">15:30</option>
-                <option value="15:45">15:45</option>
-                <option value="16:00">16:00</option>
-                <option value="16:15">16:15</option>
-                <option value="16:30">16:30</option>
-                <option value="16:45">16:45</option>
-                <option value="17:00">17:00</option>
-                <option value="17:15">17:15</option>
-                <option value="17:30">17:30</option>
-                <option value="17:45">17:45</option>
-                <option value="18:00">18:00</option>
-                <option value="18:15">18:15</option>
-                <option value="18:30">18:30</option>
-                <option value="18:45">18:45</option>
-                <option value="19:00">19:00</option>
-                <option value="19:15">19:15</option>
-                <option value="19:30">19:30</option>
-                <option value="19:45">19:45</option>
-                <option value="20:00">20:00</option>
-                <option value="20:15">20:15</option>
-                <option value="20:30">20:30</option>
-                <option value="20:45">20:45</option>
-                <option value="21:00">21:00</option>
-                <option value="21:15">21:15</option>
-                <option value="21:30">21:30</option>
-                <option value="21:45">21:45</option>
-                <option value="22:00">22:00</option>
-            </select>
-        </div>
-        
-        <p class="mt-3">終了時間</p>
-        <div>
-            <select class="form-control w-100 mt-1" name="end_time" required>
-                <option value="7:00">7:00</option>
-                <option value="7:15">7:15</option>
-                <option value="7:30">7:30</option>
-                <option value="7:45">7:45</option>
-                <option value="8:00">8:00</option>
-                <option value="8:15">8:15</option>
-                <option value="8:30">8:30</option>
-                <option value="8:45">8:45</option>
-                <option value="9:00">9:00</option>
-                <option value="9:15">9:15</option>
-                <option value="9:30">9:30</option>
-                <option value="9:45">9:45</option>
-                <option value="10:00">10:00</option>
-                <option value="10:15">10:15</option>
-                <option value="10:30">10:30</option>
-                <option value="10:45">10:45</option>
-                <option value="11:00">11:00</option>
-                <option value="11:15">11:15</option>
-                <option value="11:30">11:30</option>
-                <option value="11:45">11:45</option>
-                <option value="12:00">12:00</option>
-                <option value="12:15">12:15</option>
-                <option value="12:30">12:30</option>
-                <option value="12:45">12:45</option>
-                <option value="13:00">13:00</option>
-                <option value="13:15">13:15</option>
-                <option value="13:30">13:30</option>
-                <option value="13:45">13:45</option>
-                <option value="14:00">14:00</option>
-                <option value="14:15">14:15</option>
-                <option value="14:30">14:30</option>
-                <option value="14:45">14:45</option>
-                <option value="15:00">15:00</option>
-                <option value="15:15">15:15</option>
-                <option value="15:30">15:30</option>
-                <option value="15:45">15:45</option>
-                <option value="16:00">16:00</option>
-                <option value="16:15">16:15</option>
-                <option value="16:30">16:30</option>
-                <option value="16:45">16:45</option>
-                <option value="17:00" selected>17:00</option>
-                <option value="17:15">17:15</option>
-                <option value="17:30">17:30</option>
-                <option value="17:45">17:45</option>
-                <option value="18:00">18:00</option>
-                <option value="18:15">18:15</option>
-                <option value="18:30">18:30</option>
-                <option value="18:45">18:45</option>
-                <option value="19:00">19:00</option>
-                <option value="19:15">19:15</option>
-                <option value="19:30">19:30</option>
-                <option value="19:45">19:45</option>
-                <option value="20:00">20:00</option>
-                <option value="20:15">20:15</option>
-                <option value="20:30">20:30</option>
-                <option value="20:45">20:45</option>
-                <option value="21:00">21:00</option>
-                <option value="21:15">21:15</option>
-                <option value="21:30">21:30</option>
-                <option value="21:45">21:45</option>
-                <option value="22:00">22:00</option>
-            </select>
-        </div>
-        
-        <p class="mt-3">場所</p>
-        <div>
-            <input class="form-control w-100 mt-1" type="text" name="place" list="places" placeholder="テキスト入力または選択" autocomplete="off" required>
-            <datalist id="places">
-                <option value="戸田公園ホール">戸田公園ホール</option>
-                <option value="北戸田ホール">北戸田ホール</option>
-                <option value="新埼玉霊園">新埼玉霊園</option>
-                <option value="つつじ苑">つつじ苑</option>
-                <option value="井上センター">井上センター</option>
-                <option value="越谷斎場">越谷斎場</option>
-                <option value="埼葛斎場">埼葛斎場</option>
-                <option value="大宮聖苑">大宮聖苑</option>                
-                <option value="三仏寺">三仏寺</option>
-            </datalist>
-        </div>
+    <div class="background-container">
+        <form class="w-75 mx-auto">
+            <p class="mt-3">日時</p>
+            <div>
+                <input type="date" lass="form-control w-100 mt-1" name="date" required>
+            </div>
+            
+            <p class="mt-3">家</p>
+            <div>
+                <input class="form-control w-100 mt-1" name="ie" required>
+            </div>
+            
+            <p class="mt-3">開始時間</p>
+            <div>
+                <select class="form-control w-100 mt-1" name="start_time" required>
+                    <option value="7:00">7:00</option>
+                    <option value="7:15">7:15</option>
+                    <option value="7:30">7:30</option>
+                    <option value="7:45">7:45</option>
+                    <option value="8:00">8:00</option>
+                    <option value="8:15">8:15</option>
+                    <option value="8:30">8:30</option>
+                    <option value="8:45">8:45</option>
+                    <option value="9:00">9:00</option>
+                    <option value="9:15">9:15</option>
+                    <option value="9:30">9:30</option>
+                    <option value="9:45">9:45</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:15">10:15</option>
+                    <option value="10:30">10:30</option>
+                    <option value="10:45">10:45</option>
+                    <option value="11:00" selected>11:00</option>
+                    <option value="11:15">11:15</option>
+                    <option value="11:30">11:30</option>
+                    <option value="11:45">11:45</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:15">12:15</option>
+                    <option value="12:30">12:30</option>
+                    <option value="12:45">12:45</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:15">13:15</option>
+                    <option value="13:30">13:30</option>
+                    <option value="13:45">13:45</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:15">14:15</option>
+                    <option value="14:30">14:30</option>
+                    <option value="14:45">14:45</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:15">15:15</option>
+                    <option value="15:30">15:30</option>
+                    <option value="15:45">15:45</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:15">16:15</option>
+                    <option value="16:30">16:30</option>
+                    <option value="16:45">16:45</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:15">17:15</option>
+                    <option value="17:30">17:30</option>
+                    <option value="17:45">17:45</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:15">18:15</option>
+                    <option value="18:30">18:30</option>
+                    <option value="18:45">18:45</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:15">19:15</option>
+                    <option value="19:30">19:30</option>
+                    <option value="19:45">19:45</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:15">20:15</option>
+                    <option value="20:30">20:30</option>
+                    <option value="20:45">20:45</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:15">21:15</option>
+                    <option value="21:30">21:30</option>
+                    <option value="21:45">21:45</option>
+                    <option value="22:00">22:00</option>
+                </select>
+            </div>
+            
+            <p class="mt-3">終了時間</p>
+            <div>
+                <select class="form-control w-100 mt-1" name="end_time" required>
+                    <option value="7:00">7:00</option>
+                    <option value="7:15">7:15</option>
+                    <option value="7:30">7:30</option>
+                    <option value="7:45">7:45</option>
+                    <option value="8:00">8:00</option>
+                    <option value="8:15">8:15</option>
+                    <option value="8:30">8:30</option>
+                    <option value="8:45">8:45</option>
+                    <option value="9:00">9:00</option>
+                    <option value="9:15">9:15</option>
+                    <option value="9:30">9:30</option>
+                    <option value="9:45">9:45</option>
+                    <option value="10:00">10:00</option>
+                    <option value="10:15">10:15</option>
+                    <option value="10:30">10:30</option>
+                    <option value="10:45">10:45</option>
+                    <option value="11:00">11:00</option>
+                    <option value="11:15">11:15</option>
+                    <option value="11:30">11:30</option>
+                    <option value="11:45">11:45</option>
+                    <option value="12:00">12:00</option>
+                    <option value="12:15">12:15</option>
+                    <option value="12:30">12:30</option>
+                    <option value="12:45">12:45</option>
+                    <option value="13:00">13:00</option>
+                    <option value="13:15">13:15</option>
+                    <option value="13:30">13:30</option>
+                    <option value="13:45">13:45</option>
+                    <option value="14:00">14:00</option>
+                    <option value="14:15">14:15</option>
+                    <option value="14:30">14:30</option>
+                    <option value="14:45">14:45</option>
+                    <option value="15:00">15:00</option>
+                    <option value="15:15">15:15</option>
+                    <option value="15:30">15:30</option>
+                    <option value="15:45">15:45</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:15">16:15</option>
+                    <option value="16:30">16:30</option>
+                    <option value="16:45">16:45</option>
+                    <option value="17:00" selected>17:00</option>
+                    <option value="17:15">17:15</option>
+                    <option value="17:30">17:30</option>
+                    <option value="17:45">17:45</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:15">18:15</option>
+                    <option value="18:30">18:30</option>
+                    <option value="18:45">18:45</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:15">19:15</option>
+                    <option value="19:30">19:30</option>
+                    <option value="19:45">19:45</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:15">20:15</option>
+                    <option value="20:30">20:30</option>
+                    <option value="20:45">20:45</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:15">21:15</option>
+                    <option value="21:30">21:30</option>
+                    <option value="21:45">21:45</option>
+                    <option value="22:00">22:00</option>
+                </select>
+            </div>
+            
+            <p class="mt-3">場所</p>
+            <div>
+                <input class="form-control w-100 mt-1" type="text" name="place" list="places" placeholder="テキスト入力または選択" autocomplete="off" required>
+                <datalist id="places">
+                    <option value="戸田公園ホール">戸田公園ホール</option>
+                    <option value="北戸田ホール">北戸田ホール</option>
+                    <option value="新埼玉霊園">新埼玉霊園</option>
+                    <option value="つつじ苑">つつじ苑</option>
+                    <option value="井上センター">井上センター</option>
+                    <option value="越谷斎場">越谷斎場</option>
+                    <option value="埼葛斎場">埼葛斎場</option>
+                    <option value="大宮聖苑">大宮聖苑</option>                
+                    <option value="三仏寺">三仏寺</option>
+                </datalist>
+            </div>
+    
+            
+            <p class="mt-3">クライアント</p>
+            <div>
+                <select class="form-control w-100 mt-1" name="client" required>
+                    <option value="フレーバー">フレーバー</option>
+                    <option value="正直屋">正直屋</option>
+                    <option value="東京正直屋">東京正直屋</option>
+                    <option value="華鳳">華鳳</option>
+                    <option value="塚越">塚越</option>
+                    <option value="DCF">DCF</option>
+                    <option value="旬菜亭">旬菜亭</option>
+                    <option value="まごころサービス">まごころサービス</option>
+                    <option value="剣翆">剣翠</option>
+                    <option value="その他">その他</option>
+                </select>
+            </div>
+            
+            <p class="mt-3">交通費</p>
+            <div>
+                <input type="number" class="form-control w-100 mt-1" name="transportation_fee">
+            </div>
+            
+            <p class="mt-3">駐車場代</p>
+            <div>
+                <input type="number" class="form-control w-100 mt-1" name="parking_fee">
+            </div>
+            
+            <p class="mt-3">メモ</p>
+            <div>
+                <input class="form-control w-100 mt-1" name="memo">
+            </div>
+            
+            <input type="submit" class="mt-4 btn btn-primary" value="送信">
+        </form>
 
-        
-        <p class="mt-3">クライアント</p>
-        <div>
-            <select class="form-control w-100 mt-1" name="client" required>
-                <option value="フレーバー">フレーバー</option>
-                <option value="正直屋">正直屋</option>
-                <option value="東京正直屋">東京正直屋</option>
-                <option value="華鳳">華鳳</option>
-                <option value="塚越">塚越</option>
-                <option value="DCF">DCF</option>
-                <option value="旬菜亭">旬菜亭</option>
-                <option value="まごころサービス">まごころサービス</option>
-                <option value="剣翆">剣翠</option>
-                <option value="その他">その他</option>
-            </select>
-        </div>
-        
-        <p class="mt-3">交通費</p>
-        <div>
-            <input type="number" class="form-control w-100 mt-1" name="transportation_fee">
-        </div>
-        
-        <p class="mt-3">駐車場代</p>
-        <div>
-            <input type="number" class="form-control w-100 mt-1" name="parking_fee">
-        </div>
-        
-        <p class="mt-3">メモ</p>
-        <div>
-            <input class="form-control w-100 mt-1" name="memo">
-        </div>
-        
-        <input type="submit" class="mt-4 btn btn-primary" value="送信">
-    </form>
-
-     <img src="snow-forest-banner.png" width="100%" height="">
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
