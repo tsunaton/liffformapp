@@ -300,7 +300,7 @@
                 const end_time = $('select[name="end_time"]').val();
         
                 // 🔽 候補にないチェックがONの場合は固定値を、OFFなら入力値を使う
-                const place = $('#placeUnknown').is(':checked') ? '候補になし' : $('input[name="place"]').val();
+                const place = $('#placeUnknown').is(':checked') ? '候補になし' : $('select[name="place"]').val();
                 const client = $('#clientUnknown').is(':checked') ? '候補になし' : $('select[name="client"]').val();
         
                 const transportation_fee = $('input[name="transportation_fee"]').val();
@@ -319,7 +319,7 @@
         $(document).ready(function () {
             // 「場所」のチェック状態で入力欄を有効/無効
             $('#placeUnknown').change(function () {
-                $('input[name="place"]').prop('disabled', $(this).is(':checked'));
+                $('select[name="place"]').prop('disabled', $(this).is(':checked'));
             });
     
             // 「クライアント」のチェック状態で選択欄を有効/無効
@@ -336,7 +336,7 @@
         $(document).ready(function () {
             // 「場所」チェック状態で入力欄のON/OFFと値の保持・復元
             $('#placeUnknown').change(function () {
-                const $placeInput = $('input[name="place"]');
+                const $placeSelect = $('select[name="place"]');
                 if ($(this).is(':checked')) {
                     previousPlace = $placeInput.val();     // 今の値を保存
                     $placeInput.val('');                   // 表示を空に
