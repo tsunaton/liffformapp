@@ -189,8 +189,7 @@
             
             <p class="mt-3">場所</p>
             <div>
-                <input class="form-control w-100 mt-1" type="text" name="place" list="places" placeholder="テキスト入力または選択" autocomplete="off" required>
-                <datalist id="places">
+                <select class="form-control w-100 mt-1" name="place" required>
                     <option value="戸田公園ホール">戸田公園ホール</option>
                     <option value="北戸田ホール">北戸田ホール</option>
                     <option value="越谷斎場">越谷斎場</option>
@@ -203,16 +202,16 @@
                     <option value="井上センター">井上センター</option>
                     <option value="中華料理　天府">中華料理　天府</option>
                     <option value="思い出の里">思い出の里</option>
-                </datalist>
+                </select>
             </div>
             <div class="form-check mt-1">
-                <input class="form-check-input" type="checkbox" id="placeUnknown">
-                <label class="form-check-label" for="placeUnknown">候補にない</label>
+              <input type="checkbox" class="form-check-input" id="placeUnknown">
+              <label class="form-check-label" for="placeUnknown">候補にない</label>
             </div>
 
     
             
-            <p class="mt-3">クライアント(候補にない場合はメモ欄へ)</p>
+            <p class="mt-3">クライアント</p>
             <div>
                 <select class="form-control w-100 mt-1" name="client" required>
                     <option value="フレーバー">フレーバー</option>
@@ -228,9 +227,14 @@
                     <option value="中華料理　天府">中華料理　天府</option>
                     <option value="華鳳">華鳳</option>
                     <option value="剣翆">剣翠</option>
-                    <option value="研修中">研修中</option>
+                    <option value="研修中">＊研修中＊</option>
                 </select>
             </div>
+            <div class="form-check mt-1">
+              <input type="checkbox" class="form-check-input" id="clientUnknown">
+              <label class="form-check-label" for="clientUnknown">候補にない</label>
+            </div>
+
             
             <p class="mt-3">交通費</p>
             <div>
@@ -321,6 +325,39 @@
             // 「クライアント」のチェック状態で選択欄を有効/無効
             $('#clientUnknown').change(function () {
                 $('select[name="client"]').prop('disabled', $(this).is(':checked'));
+            });
+        });
+    </script>
+    
+    <script>
+        let previousPlace = '';
+        let previousClient = '';
+    
+        $(document).ready(function () {
+            // 「場所」チェック状態で入力欄のON/OFFと値の保持・復元
+            $('#placeUnknown').change(function () {
+                const $placeInput = $('input[name="place"]');
+                if ($(this).is(':checked')) {
+                    previousPlace = $placeInput.val();     // 今の値を保存
+                    $placeInput.val('');                   // 表示を空に
+                    $placeInput.prop('disabled', true);    // 無効化
+                } else {
+                    $placeInput.prop('disabled', false);   // 有効化
+                    $placeInput.val(previousPlace);        // 元の値を戻す
+                }
+            });
+    
+            // 「クライアント」チェック状態で選択欄のON/OFFと値の保持・復元
+            $('#clientUnknown').change(function () {
+                const $clientSelect = $('select[name="client"]');
+                if ($(this).is(':checked')) {
+                    previousClient = $clientSelect.val();
+                    $clientSelect.val('');                 // 表示を空に
+                    $clientSelect.prop('disabled', true);
+                } else {
+                    $clientSelect.prop('disabled', false);
+                    $clientSelect.val(previousClient);
+                }
             });
         });
     </script>
