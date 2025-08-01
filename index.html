@@ -294,18 +294,37 @@
                 const ie = $('input[name="ie"]').val();
                 const start_time = $('select[name="start_time"]').val();
                 const end_time = $('select[name="end_time"]').val();
-                const place  = $('input[name="place"]').val();
-                const client  = $('select[name="client"]').val();
+        
+                // 🔽 候補にないチェックがONの場合は固定値を、OFFなら入力値を使う
+                const place = $('#placeUnknown').is(':checked') ? '候補になし' : $('input[name="place"]').val();
+                const client = $('#clientUnknown').is(':checked') ? '候補になし' : $('select[name="client"]').val();
+        
                 const transportation_fee = $('input[name="transportation_fee"]').val();
                 const parking_fee = $('input[name="parking_fee"]').val();
-                const memo  = $('input[name="memo"]').val();
+                const memo = $('input[name="memo"]').val();
+        
                 const msg = `${date}\n${ie}\n${start_time}\n${end_time}\n${place}\n${client}\n${transportation_fee}\n${parking_fee}\n${memo}`;
                 sendText(msg);
                 return false;
             });
         });
 
+
     </script>
+    <script>
+        $(document).ready(function () {
+            // 「場所」のチェック状態で入力欄を有効/無効
+            $('#placeUnknown').change(function () {
+                $('input[name="place"]').prop('disabled', $(this).is(':checked'));
+            });
+    
+            // 「クライアント」のチェック状態で選択欄を有効/無効
+            $('#clientUnknown').change(function () {
+                $('select[name="client"]').prop('disabled', $(this).is(':checked'));
+            });
+        });
+    </script>
+
 
 </body>
 </html>
