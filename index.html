@@ -338,12 +338,12 @@
             $('#placeUnknown').change(function () {
                 const $placeSelect = $('select[name="place"]');
                 if ($(this).is(':checked')) {
-                    previousPlace = $placeInput.val();     // 今の値を保存
-                    $placeInput.val('');                   // 表示を空に
-                    $placeInput.prop('disabled', true);    // 無効化
+                    previousPlace = $placeSelect.val();     // 今の値を保存
+                    $placeSelect.val('');                   // 表示を空に
+                    $placeSelect.prop('disabled', true);    // 無効化
                 } else {
-                    $placeInput.prop('disabled', false);   // 有効化
-                    $placeInput.val(previousPlace);        // 元の値を戻す
+                    $placeSelect.prop('disabled', false);   // 有効化
+                    $placeSelect.val(previousPlace);        // 元の値を戻す
                 }
             });
     
