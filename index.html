@@ -187,33 +187,30 @@
                 </select>
             </div>
             
-            <p class="mt-3">場所</p>
+            
+        <p class="mt-3">場所</p>
             <div>
-                <select class="form-control w-100 mt-1" name="place" required>
-                    <option value="戸田公園ホール">戸田公園ホール</option>
-                    <option value="北戸田ホール">北戸田ホール</option>
-                    <option value="越谷斎場">越谷斎場</option>
-                    <option value="埼葛斎場">埼葛斎場</option>
-                    <option value="みずほ斎場">みずほ斎場</option>
-                    <option value="昌福寺">昌福寺</option>
-                    <option value="大宮聖苑">大宮聖苑</option> 
-                    <option value="浦和斎場">浦和斎場</option> 
-                    <option value="所沢斎場">所沢斎場</option> 
-                    <option value="谷塚斎場">谷塚斎場</option> 
-                    <option value="つつじ苑">つつじ苑</option>
-                    <option value="浦安斎場">浦安斎場</option>
-                    <option value="しののめ斎場">しののめ斎場</option>
-                    <option value="メモリアルトネ">メモリアルトネ</option>
-                    <option value="井上センター">井上センター</option>
-                    <option value="思い出の里">思い出の里</option>
-                </select>
-            </div>
-            <div class="form-check mt-1">
-              <input type="checkbox" class="form-check-input" id="placeUnknown">
-              <label class="form-check-label" for="placeUnknown">候補にない</label>
+              <input list="placeList" class="form-control w-100 mt-1" name="place" required>
+              <datalist id="placeList">
+                <option value="戸田公園ホール">
+                <option value="北戸田ホール">
+                <option value="越谷斎場">
+                <option value="埼葛斎場">
+                <option value="みずほ斎場">
+                <option value="昌福寺">
+                <option value="大宮聖苑"> 
+                <option value="浦和斎場"> 
+                <option value="所沢斎場"> 
+                <option value="谷塚斎場"> 
+                <option value="つつじ苑">
+                <option value="浦安斎場">
+                <option value="しののめ斎場">
+                <option value="メモリアルトネ">
+                <option value="井上センター">
+                <option value="思い出の里">
+              </datalist>
             </div>
 
-    
             
             <p class="mt-3">クライアント</p>
             <div>
@@ -298,9 +295,9 @@
                 const ie = $('input[name="ie"]').val();
                 const start_time = $('select[name="start_time"]').val();
                 const end_time = $('select[name="end_time"]').val();
+                const place = $('input[name="place"]').val();
         
                 // 🔽 候補にないチェックがONの場合は固定値を、OFFなら入力値を使う
-                const place = $('#placeUnknown').is(':checked') ? '候補になし' : $('select[name="place"]').val();
                 const client = $('#clientUnknown').is(':checked') ? '候補になし' : $('select[name="client"]').val();
         
                 const transportation_fee = $('input[name="transportation_fee"]').val();
@@ -317,11 +314,6 @@
     </script>
     <script>
         $(document).ready(function () {
-            // 「場所」のチェック状態で入力欄を有効/無効
-            $('#placeUnknown').change(function () {
-                $('select[name="place"]').prop('disabled', $(this).is(':checked'));
-            });
-    
             // 「クライアント」のチェック状態で選択欄を有効/無効
             $('#clientUnknown').change(function () {
                 $('select[name="client"]').prop('disabled', $(this).is(':checked'));
@@ -333,20 +325,7 @@
         let previousPlace = '';
         let previousClient = '';
     
-        $(document).ready(function () {
-            // 「場所」チェック状態で入力欄のON/OFFと値の保持・復元
-            $('#placeUnknown').change(function () {
-                const $placeSelect = $('select[name="place"]');
-                if ($(this).is(':checked')) {
-                    previousPlace = $placeSelect.val();     // 今の値を保存
-                    $placeSelect.val('');                   // 表示を空に
-                    $placeSelect.prop('disabled', true);    // 無効化
-                } else {
-                    $placeSelect.prop('disabled', false);   // 有効化
-                    $placeSelect.val(previousPlace);        // 元の値を戻す
-                }
-            });
-    
+        $(document).ready(function () {    
             // 「クライアント」チェック状態で選択欄のON/OFFと値の保持・復元
             $('#clientUnknown').change(function () {
                 const $clientSelect = $('select[name="client"]');
