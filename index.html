@@ -229,7 +229,6 @@
                     <option value="旬菜亭">旬菜亭</option>
                     <option value="正直屋">正直屋</option>
                     <option value="味くら苑">味くら苑</option>
-                    <option value="サンエーフード">サンエーフード</option>
                     <option value="玉乃家">玉乃家</option>
                     <option value="東京正直屋">東京正直屋</option>
                     <option value="谷駒">谷駒</option>
@@ -240,6 +239,25 @@
               <input type="checkbox" class="form-check-input" id="clientUnknown">
               <label class="form-check-label" for="clientUnknown">候補にない(「メモ欄」へ入力)</label>
             </div>
+
+
+            <p class="mt-3">葬儀社</p>
+            <div>
+              <input list="funeralhomeList" 
+                     class="form-control w-100 mt-1" 
+                     name="funeral_home" 
+                     required 
+                     placeholder="右矢印から選択">
+            
+              <datalist id="funeralhomeList">
+                <option value="金宝堂">
+                <option value="ファミーユ">
+                <option value="むすびす">
+              </datalist>
+            
+              <small class="form-text text-muted">候補になければタップして直接入力も可</small>
+            </div>
+
 
             
             <p class="mt-3">交通費</p>
@@ -308,12 +326,13 @@
         
                 // 🔽 候補にないチェックがONの場合は固定値を、OFFなら入力値を使う
                 const client = $('#clientUnknown').is(':checked') ? '候補になし' : $('select[name="client"]').val();
-        
+
+                const place = $('input[name="funeral_home"]').val();
                 const transportation_fee = $('input[name="transportation_fee"]').val();
                 const parking_fee = $('input[name="parking_fee"]').val();
                 const memo = $('input[name="memo"]').val();
         
-                const msg = `${date}\n${ie}\n${start_time}\n${end_time}\n${place}\n${client}\n${transportation_fee}\n${parking_fee}\n${memo}`;
+                const msg = `${date}\n${ie}\n${start_time}\n${end_time}\n${place}\n${client}\n${funeral_home}\n${transportation_fee}\n${parking_fee}\n${memo}`;
                 sendText(msg);
                 return false;
             });
