@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ポラム勤務報告</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.min.css">
     <style>
@@ -37,6 +37,25 @@
             background-color: #ffa9bd;
             border-color: white;
         }
+
+        /* ▼ 候補リスト（オートコンプリート）の見た目：スマホで押しやすいように大きめに */
+        .ui-autocomplete {
+            max-height: 240px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            z-index: 9999;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        .ui-autocomplete .ui-menu-item-wrapper {
+            padding: 0.6rem 0.8rem;
+            font-size: 1rem;
+        }
+        .ui-autocomplete .ui-state-active {
+            background: #ffa9bd;
+            border-color: #ffa9bd;
+            color: #fff;
+        }
     </style>
 
 </head>
@@ -45,14 +64,14 @@
         <form class="w-75 mx-auto">
             <p class="mt-3">日時</p>
             <div>
-                <input type="date" lass="form-control w-100 mt-1" name="date" required>
+                <input type="date" class="form-control w-100 mt-1" name="date" required>
             </div>
-            
+
             <p class="mt-3">家</p>
             <div>
                 <input class="form-control w-100 mt-1" name="ie" required>
             </div>
-            
+
             <p class="mt-3">開始時間</p>
             <div>
                 <select class="form-control w-100 mt-1" name="start_time" required>
@@ -119,7 +138,7 @@
                     <option value="22:00">22:00</option>
                 </select>
             </div>
-            
+
             <p class="mt-3">終了時間</p>
             <div>
                 <select class="form-control w-100 mt-1" name="end_time" required>
@@ -186,41 +205,18 @@
                     <option value="22:00">22:00</option>
                 </select>
             </div>
-            
-            
-        <p class="mt-3">場所</p>
+
+
+            <p class="mt-3">場所</p>
             <div>
-              <input list="placeList" 
-                     class="form-control w-100 mt-1" 
-                     name="place" 
-                     required 
-                     placeholder="入力or右矢印より選択">
-            
-              <datalist id="placeList">
-                <option value="戸田公園ホール">
-                <option value="越谷斎場">
-                <option value="埼葛斎場">
-                <option value="大宮聖苑"> 
-                <option value="浦和斎場">
-                <option value="しののめの里">
-                <option value="つつじ苑">
-                <option value="メモリアルトネ">
-                <option value="川越斎場"> 
-                <option value="谷塚斎場"> 
-                <option value="妙典寺">
-                <option value="三郷斎場">
-                <option value="北戸田ホール">
-                <option value="所沢斎場">
-                <option value="みずほ斎場">
-                <option value="浦安斎場">
-                <option value="井上センター">
-              </datalist>
-            
+              <input class="form-control w-100 mt-1"
+                     name="place"
+                     required
+                     autocomplete="off"
+                     placeholder="入力すると候補が出ます（タップで一覧）">
             </div>
 
 
-
-            
             <p class="mt-3">クライアント</p>
             <div>
                 <select class="form-control w-100 mt-1" name="client" required>
@@ -245,50 +241,29 @@
 
             <p class="mt-3">葬儀社</p>
             <div>
-              <input list="funeralhomeList" 
-                     class="form-control w-100 mt-1" 
-                     name="funeral_home" 
-                     required 
-                     placeholder="入力or右矢印より選択">
-            
-              <datalist id="funeralhomeList">
-                <option value="金宝堂">
-                <option value="ファミーユ">
-                <option value="むすびす">
-                <option value="熊木式典">
-                <option value="川口市民葬祭">
-                <option value="川口典礼">
-                <option value="島村葬儀社">
-                <option value="リベント">
-                <option value="井上葬祭">
-                <option value="ティア">
-                <option value="ひのき葬祭">
-                <option value="ヒューマンアシスト">
-                <option value="だいご">
-                <option value="FLOW">
-                <option value="フェイス">
-                <option value="おくりびと">
-              </datalist>
-            
+              <input class="form-control w-100 mt-1"
+                     name="funeral_home"
+                     required
+                     autocomplete="off"
+                     placeholder="入力すると候補が出ます（タップで一覧）">
             </div>
 
 
-            
             <p class="mt-3">交通費</p>
             <div>
                 <input type="number" class="form-control w-100 mt-1" name="transportation_fee">
             </div>
-            
+
             <p class="mt-3">駐車場代</p>
             <div>
                 <input type="number" class="form-control w-100 mt-1" name="parking_fee">
             </div>
-            
+
             <p class="mt-3">メモ</p>
             <div>
                 <input class="form-control w-100 mt-1" name="memo">
             </div>
-            
+
             <input type="submit" class="mt-4 btn btn-primary" value="送　信">
         </form>
 
@@ -337,7 +312,7 @@
                 const start_time = $('select[name="start_time"]').val();
                 const end_time = $('select[name="end_time"]').val();
                 const place = $('input[name="place"]').val();
-        
+
                 // 🔽 候補にないチェックがONの場合は固定値を、OFFなら入力値を使う
                 const client = $('#clientUnknown').is(':checked') ? '候補になし' : $('select[name="client"]').val();
 
@@ -345,7 +320,7 @@
                 const transportation_fee = $('input[name="transportation_fee"]').val();
                 const parking_fee = $('input[name="parking_fee"]').val();
                 const memo = $('input[name="memo"]').val();
-        
+
                 const msg = `${date}\n${ie}\n${start_time}\n${end_time}\n${place}\n${client}\n${funeral_home}\n${transportation_fee}\n${parking_fee}\n${memo}`;
                 sendText(msg);
                 return false;
@@ -354,20 +329,112 @@
 
 
     </script>
+
     <script>
-        $(document).ready(function () {
-            // 「クライアント」のチェック状態で選択欄を有効/無効
-            $('#clientUnknown').change(function () {
-                $('select[name="client"]').prop('disabled', $(this).is(':checked'));
+        // =====================================================
+        // ▼ 場所・葬儀社の候補リスト
+        //   name  = 表示・送信される名前
+        //   yomi  = ひらがなの読み（ひらがなで打っても候補に出るようにするため）
+        //   ※ 候補を増やすときは、この形で1行追加するだけでOKです
+        // =====================================================
+        const PLACE_LIST = [
+            { name: '戸田公園ホール',   yomi: 'とだこうえんほーる' },
+            { name: '越谷斎場',         yomi: 'こしがやさいじょう' },
+            { name: '埼葛斎場',         yomi: 'さいかつさいじょう' },
+            { name: '大宮聖苑',         yomi: 'おおみやせいえん' },
+            { name: '浦和斎場',         yomi: 'うらわさいじょう' },
+            { name: 'しののめの里',     yomi: 'しののめのさと' },
+            { name: 'つつじ苑',         yomi: 'つつじえん' },
+            { name: 'メモリアルトネ',   yomi: 'めもりあるとね' },
+            { name: '川越斎場',         yomi: 'かわごえさいじょう' },
+            { name: '谷塚斎場',         yomi: 'やつかさいじょう' },
+            { name: '妙典寺',           yomi: 'みょうでんじ' },
+            { name: '三郷斎場',         yomi: 'みさとさいじょう' },
+            { name: '北戸田ホール',     yomi: 'きたとだほーる' },
+            { name: '所沢斎場',         yomi: 'ところざわさいじょう' },
+            { name: 'みずほ斎場',       yomi: 'みずほさいじょう' },
+            { name: '浦安斎場',         yomi: 'うらやすさいじょう' },
+            { name: '井上センター',     yomi: 'いのうえせんたー' }
+        ];
+
+        const FUNERAL_HOME_LIST = [
+            { name: '金宝堂',           yomi: 'きんぽうどう' },
+            { name: 'ファミーユ',       yomi: 'ふぁみーゆ' },
+            { name: 'むすびす',         yomi: 'むすびす' },
+            { name: '熊木式典',         yomi: 'くまきしきてん' },
+            { name: '川口市民葬祭',     yomi: 'かわぐちしみんそうさい' },
+            { name: '川口典礼',         yomi: 'かわぐちてんれい' },
+            { name: '島村葬儀社',       yomi: 'しまむらそうぎしゃ' },
+            { name: 'リベント',         yomi: 'りべんと' },
+            { name: '井上葬祭',         yomi: 'いのうえそうさい' },
+            { name: 'ティア',           yomi: 'てぃあ' },
+            { name: 'ひのき葬祭',       yomi: 'ひのきそうさい' },
+            { name: 'ヒューマンアシスト', yomi: 'ひゅーまんあしすと' },
+            { name: 'だいご',           yomi: 'だいご' },
+            { name: 'FLOW',             yomi: 'ふろー' },
+            { name: 'フェイス',         yomi: 'ふぇいす' },
+            { name: 'おくりびと',       yomi: 'おくりびと' }
+        ];
+
+        // 入力された文字をそろえる（カタカナ→ひらがな、全角英数→半角、大文字→小文字）
+        function normalize(str) {
+            return (str || '')
+                .replace(/[ァ-ヶ]/g, function (ch) {
+                    return String.fromCharCode(ch.charCodeAt(0) - 0x60);
+                })
+                .replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (ch) {
+                    return String.fromCharCode(ch.charCodeAt(0) - 0xFEE0);
+                })
+                .toLowerCase()
+                .replace(/\s/g, '');
+        }
+
+        // 入力欄に「打つたびに候補が出る」機能を付ける
+        function setupSuggest(selector, list) {
+            const $input = $(selector);
+
+            $input.autocomplete({
+                minLength: 0,   // 0文字でも（タップしただけでも）候補を出す
+                delay: 0,       // 待たずにすぐ出す
+                source: function (request, response) {
+                    const q = normalize(request.term);
+                    const hits = list.filter(function (item) {
+                        if (q === '') return true;  // 空なら全部
+                        return normalize(item.name).indexOf(q) !== -1 ||
+                               item.yomi.indexOf(q) !== -1;
+                    });
+                    response(hits.map(function (item) { return item.name; }));
+                },
+                open: function () {
+                    // iPhoneで「2回タップしないと選べない」問題の対策
+                    $('.ui-autocomplete').off('menufocus hover mouseover mouseenter');
+                }
             });
+
+            // 日本語入力（変換前のひらがな）でも1文字ごとに候補を更新する
+            $input.on('input compositionupdate', function () {
+                const $self = $(this);
+                setTimeout(function () {
+                    $self.autocomplete('search', $self.val());
+                }, 0);
+            });
+
+            // タップしたら一覧を表示
+            $input.on('focus click', function () {
+                $(this).autocomplete('search', $(this).val());
+            });
+        }
+
+        $(document).ready(function () {
+            setupSuggest('input[name="place"]', PLACE_LIST);
+            setupSuggest('input[name="funeral_home"]', FUNERAL_HOME_LIST);
         });
     </script>
-    
+
     <script>
-        let previousPlace = '';
         let previousClient = '';
-    
-        $(document).ready(function () {    
+
+        $(document).ready(function () {
             // 「クライアント」チェック状態で選択欄のON/OFFと値の保持・復元
             $('#clientUnknown').change(function () {
                 const $clientSelect = $('select[name="client"]');
