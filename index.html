@@ -400,8 +400,9 @@
                     const q = normalize(request.term);
                     const hits = list.filter(function (item) {
                         if (q === '') return true;  // 空なら全部
-                        return normalize(item.name).indexOf(q) !== -1 ||
-                               item.yomi.indexOf(q) !== -1;
+                        // 先頭から順に一致するものだけ（名前 または 読みがな）
+                        return normalize(item.name).startsWith(q) ||
+                               item.yomi.startsWith(q);
                     });
                     response(hits.map(function (item) { return item.name; }));
                 },
