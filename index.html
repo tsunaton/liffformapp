@@ -56,6 +56,24 @@
             border-color: #ffa9bd;
             color: #fff;
         }
+
+        /* ▼ 「家」「円」を入力欄の右に付ける部分 */
+        .input-group > .form-control {
+            border-radius: 1rem 0 0 1rem;
+        }
+        .input-group-append .input-group-text {
+            border: 2px solid #ffffff;
+            border-radius: 0 1rem 1rem 0;
+            background-color: #ffe4ea;
+        }
+        /* ▼ 「場所を追加」などの小さいボタン */
+        .btn-sub {
+            color: #ff7f9c;
+            background: #ffffff;
+            border: 1px solid #ffa9bd;
+            border-radius: 1rem;
+            font-size: 0.85rem;
+        }
     </style>
 
 </head>
@@ -69,7 +87,10 @@
 
             <p class="mt-3">家</p>
             <div>
-                <input class="form-control w-100 mt-1" name="ie" required>
+                <div class="input-group mt-1">
+                    <input class="form-control" name="ie" required placeholder="例：山田">
+                    <div class="input-group-append"><span class="input-group-text">家</span></div>
+                </div>
             </div>
 
             <p class="mt-3">開始時間</p>
@@ -216,6 +237,16 @@
                      placeholder="入力すると候補が出ます（タップで一覧）">
             </div>
 
+            <!-- ▼ 2つ目の場所（「場所を追加」を押したときだけ表示） -->
+            <div id="place2Area" style="display:none;">
+              <p class="mt-2 mb-0 small">2つ目の場所</p>
+              <input class="form-control w-100 mt-1"
+                     name="place2"
+                     autocomplete="off"
+                     placeholder="入力すると候補が出ます（タップで一覧）">
+            </div>
+            <button type="button" id="addPlaceBtn" class="btn btn-sub btn-sm mt-2">＋ 場所を追加</button>
+
 
             <p class="mt-3">クライアント</p>
             <div>
@@ -235,7 +266,11 @@
             </div>
             <div class="form-check mt-1">
               <input type="checkbox" class="form-check-input" id="clientUnknown">
-              <label class="form-check-label" for="clientUnknown">候補にない(「メモ欄」へ入力)</label>
+              <label class="form-check-label" for="clientUnknown">候補にない（下の欄に入力）</label>
+            </div>
+            <!-- ▼ 「候補にない」にチェックしたときだけ表示 -->
+            <div id="clientOtherArea" style="display:none;">
+                <input class="form-control w-100 mt-1" name="client_other" placeholder="クライアント名を入力">
             </div>
 
 
@@ -251,12 +286,18 @@
 
             <p class="mt-3">交通費</p>
             <div>
-                <input type="number" class="form-control w-100 mt-1" name="transportation_fee">
+                <div class="input-group mt-1">
+                    <input type="number" inputmode="numeric" class="form-control" name="transportation_fee">
+                    <div class="input-group-append"><span class="input-group-text">円</span></div>
+                </div>
             </div>
 
             <p class="mt-3">駐車場代</p>
             <div>
-                <input type="number" class="form-control w-100 mt-1" name="parking_fee">
+                <div class="input-group mt-1">
+                    <input type="number" inputmode="numeric" class="form-control" name="parking_fee">
+                    <div class="input-group-append"><span class="input-group-text">円</span></div>
+                </div>
             </div>
 
             <p class="mt-3">メモ</p>
@@ -308,13 +349,19 @@
         $(function () {
             $('form').submit(function () {
                 const date = $('input[name="date"]').val();
-                const ie = $('input[name="ie"]').val();
+                // 入力値の後ろに「家」を付ける（「山田家」と打っていても「山田家家」にならないようにする）
+                const ie = $('input[name="ie"]').val().trim().replace(/家$/, '') + '家';
                 const start_time = $('select[name="start_time"]').val();
                 const end_time = $('select[name="end_time"]').val();
-                const place = $('input[name="place"]').val();
+                // 2つ目の場所があれば「1つ目～2つ目」の形にする
+                const place1 = $('input[name="place"]').val().trim();
+                const place2 = $('#place2Area').is(':visible') ? $('input[name="place2"]').val().trim() : '';
+                const place = place2 ? `${place1}～${place2}` : place1;
 
                 // 🔽 候補にないチェックがONの場合は固定値を、OFFなら入力値を使う
-                const client = $('#clientUnknown').is(':checked') ? '候補になし' : $('select[name="client"]').val();
+                const client = $('#clientUnknown').is(':checked')
+                    ? $('input[name="client_other"]').val().trim()
+                    : $('select[name="client"]').val();
 
                 const funeral_home = $('input[name="funeral_home"]').val();
                 const transportation_fee = $('input[name="transportation_fee"]').val();
@@ -348,13 +395,16 @@
             { name: 'メモリアルトネ',   yomi: 'めもりあるとね' },
             { name: '川越斎場',         yomi: 'かわごえさいじょう' },
             { name: '谷塚斎場',         yomi: 'やつかさいじょう' },
-            { name: '妙典寺',           yomi: 'みょうでんじ' },
             { name: '三郷斎場',         yomi: 'みさとさいじょう' },
             { name: '北戸田ホール',     yomi: 'きたとだほーる' },
             { name: '所沢斎場',         yomi: 'ところざわさいじょう' },
             { name: 'みずほ斎場',       yomi: 'みずほさいじょう' },
-            { name: '浦安斎場',         yomi: 'うらやすさいじょう' },
-            { name: '井上センター',     yomi: 'いのうえせんたー' }
+            { name: '井上センター',     yomi: 'いのうえせんたー' },
+            // ▼ 2026/11 追加（マスターで月5回以上）／直近3か月で3回以下のものは削除済み
+            { name: '川口メモリアルホール', yomi: 'かわぐちめもりあるほーる' },
+            { name: 'ティア越谷',       yomi: 'てぃあこしがや' },
+            { name: '寄居',             yomi: 'よりい' },
+            { name: '密蔵院',           yomi: 'みつぞういん' }
         ];
 
         const FUNERAL_HOME_LIST = [
@@ -364,16 +414,14 @@
             { name: '熊木式典',         yomi: 'くまきしきてん' },
             { name: '川口市民葬祭',     yomi: 'かわぐちしみんそうさい' },
             { name: '川口典礼',         yomi: 'かわぐちてんれい' },
-            { name: '島村葬儀社',       yomi: 'しまむらそうぎしゃ' },
             { name: 'リベント',         yomi: 'りべんと' },
             { name: '井上葬祭',         yomi: 'いのうえそうさい' },
             { name: 'ティア',           yomi: 'てぃあ' },
-            { name: 'ひのき葬祭',       yomi: 'ひのきそうさい' },
-            { name: 'ヒューマンアシスト', yomi: 'ひゅーまんあしすと' },
-            { name: 'だいご',           yomi: 'だいご' },
-            { name: 'FLOW',             yomi: 'ふろー' },
-            { name: 'フェイス',         yomi: 'ふぇいす' },
-            { name: 'おくりびと',       yomi: 'おくりびと' }
+            { name: 'おくりびと',       yomi: 'おくりびと' },
+            // ▼ 2026/11 追加（マスターで月5回以上）／直近3か月で3回以下のものは削除済み
+            { name: '福祉葬祭',         yomi: 'ふくしそうさい' },
+            { name: 'さいかつ葬祭',     yomi: 'さいかつそうさい' },
+            { name: '支援葬祭',         yomi: 'しえんそうさい' }
         ];
 
         // 入力された文字をそろえる（カタカナ→ひらがな、全角英数→半角、大文字→小文字）
@@ -428,6 +476,7 @@
 
         $(document).ready(function () {
             setupSuggest('input[name="place"]', PLACE_LIST);
+            setupSuggest('input[name="place2"]', PLACE_LIST);
             setupSuggest('input[name="funeral_home"]', FUNERAL_HOME_LIST);
         });
     </script>
@@ -439,13 +488,47 @@
             // 「クライアント」チェック状態で選択欄のON/OFFと値の保持・復元
             $('#clientUnknown').change(function () {
                 const $clientSelect = $('select[name="client"]');
+                const $other = $('input[name="client_other"]');
                 if ($(this).is(':checked')) {
                     previousClient = $clientSelect.val();
                     $clientSelect.val('');                 // 表示を空に
                     $clientSelect.prop('disabled', true);
+                    $('#clientOtherArea').show();
+                    $other.prop('required', true).focus();
                 } else {
                     $clientSelect.prop('disabled', false);
                     $clientSelect.val(previousClient);
+                    $('#clientOtherArea').hide();
+                    $other.prop('required', false).val('');
+                }
+            });
+
+            // ▼ 開始時間を選ぶと、終了時間を自動で4時間後にする（あとから手で変更OK）
+            $('select[name="start_time"]').change(function () {
+                const parts = $(this).val().split(':');
+                const endMin = Number(parts[0]) * 60 + Number(parts[1]) + 4 * 60;
+                const h = Math.floor(endMin / 60);
+                const m = ('0' + (endMin % 60)).slice(-2);
+                const $end = $('select[name="end_time"]');
+                const target = h + ':' + m;
+                if ($end.find('option[value="' + target + '"]').length) {
+                    $end.val(target);
+                } else {
+                    $end.val($end.find('option').last().val());  // 22:00を超える場合は一番最後（22:00）
+                }
+            });
+
+            // ▼ 「場所を追加」ボタン：押すと2つ目の場所欄を出す／もう一度押すと消す
+            $('#addPlaceBtn').click(function () {
+                const $area = $('#place2Area');
+                if ($area.is(':visible')) {
+                    $area.hide();
+                    $('input[name="place2"]').val('').prop('required', false);
+                    $(this).text('＋ 場所を追加');
+                } else {
+                    $area.show();
+                    $('input[name="place2"]').prop('required', true).focus();
+                    $(this).text('－ 2つ目の場所を消す');
                 }
             });
         });
