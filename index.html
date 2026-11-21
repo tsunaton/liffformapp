@@ -61,11 +61,7 @@
         .input-group > .form-control {
             border-radius: 1rem 0 0 1rem;
         }
-        .input-group-append .input-group-text {
-            border: 2px solid #ffffff;
-            border-radius: 0 1rem 1rem 0;
-            background-color: #ffe4ea;
-        }
+
         /* ▼ 「場所を追加」などの小さいボタン */
         .btn-sub {
             color: #ff7f9c;
@@ -112,7 +108,7 @@
                     <option value="10:15">10:15</option>
                     <option value="10:30">10:30</option>
                     <option value="10:45">10:45</option>
-                    <option value="11:00" selected>11:00</option>
+                    <option value="11:00">11:00</option>
                     <option value="11:15">11:15</option>
                     <option value="11:30">11:30</option>
                     <option value="11:45">11:45</option>
@@ -136,7 +132,7 @@
                     <option value="16:15">16:15</option>
                     <option value="16:30">16:30</option>
                     <option value="16:45">16:45</option>
-                    <option value="17:00">17:00</option>
+                    <option value="17:00" selected>17:00</option>
                     <option value="17:15">17:15</option>
                     <option value="17:30">17:30</option>
                     <option value="17:45">17:45</option>
@@ -266,7 +262,7 @@
             </div>
             <div class="form-check mt-1">
               <input type="checkbox" class="form-check-input" id="clientUnknown">
-              <label class="form-check-label" for="clientUnknown">候補にない（下の欄に入力）</label>
+              <label class="form-check-label" for="clientUnknown">候補にない</label>
             </div>
             <!-- ▼ 「候補にない」にチェックしたときだけ表示 -->
             <div id="clientOtherArea" style="display:none;">
